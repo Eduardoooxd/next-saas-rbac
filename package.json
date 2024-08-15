@@ -4,15 +4,12 @@
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
-    "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "lint": "turbo lint"
   },
   "devDependencies": {
-    "prettier": "^3.2.5",
-    "turbo": "^2.0.14",
-    "typescript": "^5.4.5"
+    "turbo": "^2.0.14"
   },
-  "packageManager": "pnpm@8.15.6",
+  "packageManager": "pnpm@9.1.4",
   "engines": {
     "node": ">=18"
   }
