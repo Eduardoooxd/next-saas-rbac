@@ -1,0 +1,23 @@
+meta {
+  name: Update organization details
+  type: http
+  seq: 5
+}
+
+patch {
+  url: {{API_URL}}/organization/:slug
+  body: json
+  auth: inherit
+}
+
+params:path {
+  slug: rocketseat
+}
+
+body:json {
+  {
+    "name": "Rocketseat1",
+    "domain": "rockeatseat.team",
+    "shouldAttachUsersByDomain": true
+  }
+}
