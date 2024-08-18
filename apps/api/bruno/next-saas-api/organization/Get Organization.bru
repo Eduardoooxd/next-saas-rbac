@@ -1,0 +1,23 @@
+meta {
+  name: Get Organization
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{API_URL}}/organization/:slug
+  body: none
+  auth: inherit
+}
+
+params:path {
+  slug: rocketseat
+}
+
+body:json {
+  {
+    "name": "Rocketseat",
+    "domain": "rockeatseat.team",
+    "shouldAttachUsersByDomain": true
+  }
+}

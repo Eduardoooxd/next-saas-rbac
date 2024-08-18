@@ -1,0 +1,19 @@
+meta {
+  name: Get all Organizations that user is member
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{API_URL}}/organization
+  body: none
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "Rocketseat",
+    "domain": "rockeatseat.team",
+    "shouldAttachUsersByDomain": true
+  }
+}
