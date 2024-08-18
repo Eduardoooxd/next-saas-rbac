@@ -1,0 +1,23 @@
+meta {
+  name: Shutdown Organization
+  type: http
+  seq: 6
+}
+
+delete {
+  url: {{API_URL}}/organization/:slug
+  body: none
+  auth: inherit
+}
+
+params:path {
+  slug: rocketseat
+}
+
+body:json {
+  {
+    "name": "Rocketseat1",
+    "domain": "rockeatseat.team",
+    "shouldAttachUsersByDomain": true
+  }
+}
