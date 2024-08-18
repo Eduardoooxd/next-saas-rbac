@@ -12,6 +12,7 @@ import {
 
 import { authenticateWithPassword } from './routes/auth/authenticate-with-password'
 import { createAccount } from './routes/auth/create-account'
+import { getUserProfile } from './routes/auth/get-profile'
 
 const app = fastify().withTypeProvider<ZodTypeProvider>()
 
@@ -42,6 +43,7 @@ app.register(fastifyJwt, {
 // Routes
 app.register(createAccount)
 app.register(authenticateWithPassword)
+app.register(getUserProfile)
 
 const port = 3333
 
