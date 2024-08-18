@@ -1,0 +1,21 @@
+meta {
+  name: Transfer organization ownership
+  type: http
+  seq: 7
+}
+
+patch {
+  url: {{API_URL}}/organization/:slug/owner
+  body: json
+  auth: inherit
+}
+
+params:path {
+  slug: rocketseat
+}
+
+body:json {
+  {
+    "transferToUserId": "8142ba4a-1a5b-48d8-9956-370de00bd258"
+  }
+}
