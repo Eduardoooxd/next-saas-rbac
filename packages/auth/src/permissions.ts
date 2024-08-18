@@ -6,8 +6,7 @@ import { Role } from './roles'
 
 type PermissionsByRole = (
   user: User,
-  // eslint-disable-next-line prettier/prettier
-  builder: AbilityBuilder<AppAbility>
+  builder: AbilityBuilder<AppAbility>,
 ) => void
 
 export const permissions: Record<Role, PermissionsByRole> = {

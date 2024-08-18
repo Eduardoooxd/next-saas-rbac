@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "next-saas-api",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}
