@@ -19,6 +19,7 @@ import { getUserProfile } from './routes/auth/get-profile'
 import { requestPasswordRecover } from './routes/auth/request-password-recover'
 import { resetPassword } from './routes/auth/reset-password'
 import { createOrganization } from './routes/orgs/create-organization'
+import { getUserMembership } from './routes/orgs/get-membership'
 
 const app = fastify().withTypeProvider<ZodTypeProvider>()
 
@@ -65,6 +66,7 @@ app.register(requestPasswordRecover)
 app.register(resetPassword)
 
 app.register(createOrganization)
+app.register(getUserMembership)
 
 const port = env.SERVER_PORT
 

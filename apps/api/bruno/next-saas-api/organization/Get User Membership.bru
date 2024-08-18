@@ -1,0 +1,23 @@
+meta {
+  name: Get User Membership
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{API_URL}}/organization/:slug/membership
+  body: json
+  auth: inherit
+}
+
+params:path {
+  slug: rocketseat
+}
+
+body:json {
+  {
+    "name": "Rocketseat",
+    "domain": "rockeatseat.team",
+    "shouldAttachUsersByDomain": true
+  }
+}
