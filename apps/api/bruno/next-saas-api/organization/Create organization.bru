@@ -1,0 +1,19 @@
+meta {
+  name: Create organization
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{API_URL}}/organization
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "Rocketseat",
+    "domain": "rockeatseat.team",
+    "shouldAttachUsersByDomain": true
+  }
+}
