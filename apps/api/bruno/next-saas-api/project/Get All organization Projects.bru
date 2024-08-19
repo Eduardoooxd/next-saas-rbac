@@ -1,0 +1,23 @@
+meta {
+  name: Get All organization Projects
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{API_URL}}/organization/:orgSlug/project/:projectSlug
+  body: json
+  auth: inherit
+}
+
+params:path {
+  projectSlug: frontend-project
+  orgSlug: acme-admin
+}
+
+body:json {
+  {
+    "name": "Frontend Project",
+    "description": "FE for some random project" 
+  }
+}
