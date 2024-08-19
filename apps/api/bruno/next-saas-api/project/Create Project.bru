@@ -1,0 +1,22 @@
+meta {
+  name: Create Project
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{API_URL}}/organization/:slug/project
+  body: json
+  auth: inherit
+}
+
+params:path {
+  slug: acme-admin
+}
+
+body:json {
+  {
+    "name": "Frontend Project",
+    "description": "FE for some random project" 
+  }
+}
