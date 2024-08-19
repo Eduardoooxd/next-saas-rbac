@@ -1,0 +1,22 @@
+meta {
+  name: Get organization Invites
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{API_URL}}/organization/:slug/invite
+  body: none
+  auth: inherit
+}
+
+params:path {
+  slug: acme-admin
+}
+
+body:json {
+  {
+    "email": "ecouto01@gmail.com",
+    "role": "MEMBER" 
+  }
+}
