@@ -1,0 +1,22 @@
+meta {
+  name: Update Member
+  type: http
+  seq: 2
+}
+
+patch {
+  url: {{API_URL}}/organization/:slug/member/:memberId
+  body: json
+  auth: inherit
+}
+
+params:path {
+  memberId: 3c91ee38-8996-4844-b5f9-4f57f34e5328
+  slug: acme-admin
+}
+
+body:json {
+  {
+    "role": "MEMBER"
+  }
+}
