@@ -1,0 +1,21 @@
+meta {
+  name: Reject Invite
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{API_URL}}/invite/:inviteId/reject
+  body: json
+  auth: inherit
+}
+
+params:path {
+  inviteId: 
+}
+
+body:json {
+  {
+   
+  }
+}
