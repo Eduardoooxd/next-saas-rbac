@@ -1,0 +1,22 @@
+meta {
+  name: Get Invite
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{API_URL}}/invite/:inviteId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  inviteId: 
+}
+
+body:json {
+  {
+    "email": "ecouto01@gmail.com",
+    "role": "MEMBER" 
+  }
+}
