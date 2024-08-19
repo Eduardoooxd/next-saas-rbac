@@ -1,0 +1,23 @@
+meta {
+  name: Delete Project
+  type: http
+  seq: 2
+}
+
+delete {
+  url: {{API_URL}}/organization/:slug/project/:projectId
+  body: json
+  auth: inherit
+}
+
+params:path {
+  projectId: f3e1a5d4-e4ac-4aeb-879b-873a8ec71a88
+  slug: acme-admin
+}
+
+body:json {
+  {
+    "name": "Frontend Project",
+    "description": "FE for some random project" 
+  }
+}
