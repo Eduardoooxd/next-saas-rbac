@@ -1,0 +1,23 @@
+meta {
+  name: Update Project
+  type: http
+  seq: 5
+}
+
+patch {
+  url: {{API_URL}}/organization/:slug/project/:projectId
+  body: json
+  auth: inherit
+}
+
+params:path {
+  projectId: dad26c7a-a283-4500-8198-602901330e75
+  slug: acme-admin
+}
+
+body:json {
+  {
+    "name": "Backend Project Test 2",
+    "description": "BE for some random project" 
+  }
+}
