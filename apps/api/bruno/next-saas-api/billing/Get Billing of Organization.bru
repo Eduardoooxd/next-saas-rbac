@@ -1,0 +1,23 @@
+meta {
+  name: Get Billing of Organization
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{API_URL}}/organization/:slug/billing
+  body: none
+  auth: inherit
+}
+
+params:path {
+  slug: acme-admin
+}
+
+body:json {
+  {
+    "name": "Rocketseat",
+    "domain": "rockeatseat.team",
+    "shouldAttachUsersByDomain": true
+  }
+}
