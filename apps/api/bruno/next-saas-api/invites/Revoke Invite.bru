@@ -1,0 +1,22 @@
+meta {
+  name: Revoke Invite
+  type: http
+  seq: 6
+}
+
+delete {
+  url: {{API_URL}}/organization/:slug/invite/:inviteId
+  body: json
+  auth: inherit
+}
+
+params:path {
+  inviteId: 
+  slug: acme-admin
+}
+
+body:json {
+  {
+   
+  }
+}
