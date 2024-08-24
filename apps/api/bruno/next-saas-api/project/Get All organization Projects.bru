@@ -5,13 +5,12 @@ meta {
 }
 
 get {
-  url: {{API_URL}}/organization/:orgSlug/project/:projectSlug
+  url: {{API_URL}}/organization/:orgSlug/project
   body: json
   auth: inherit
 }
 
 params:path {
-  projectSlug: frontend-project
   orgSlug: acme-admin
 }
 
