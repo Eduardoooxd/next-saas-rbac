@@ -12,6 +12,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Separator } from '@/components/ui/separator'
 
+import { signInWithGithub } from '../action'
 import { signInWithEmailAndPassword } from './actions'
 
 export default function SignInForm() {
@@ -21,68 +22,77 @@ export default function SignInForm() {
   )
 
   return (
-    <form action={formAction} className="space-y-4">
-      {!success && message ? (
-        <Alert variant="destructive">
-          <AlertTriangle className="size-4" />
-          <AlertTitle>Sign in failed!</AlertTitle>
+    <div className="space-y-4">
+      <form action={formAction} className="space-y-4">
+        {!success && message ? (
+          <Alert variant="destructive">
+            <AlertTriangle className="size-4" />
+            <AlertTitle>Sign in failed!</AlertTitle>
 
-          <AlertDescription>
-            <p>{message}</p>
-          </AlertDescription>
-        </Alert>
-      ) : null}
-
-      <div className="space-y-1">
-        <Label htmlFor="email">E-mail</Label>
-        <Input name="email" type="email" id="email" />
-
-        {errors?.email ? (
-          <p className="text-xs font-medium text-red-500 dark:text-red-400">
-            {errors.email[0]}
-          </p>
-        ) : null}
-      </div>
-      <div className="space-y-1">
-        <Label htmlFor="password">Password</Label>
-        <Input name="password" type="password" id="password" />
-
-        {errors?.password ? (
-          <p className="text-xs font-medium text-red-500 dark:text-red-400">
-            {errors.password[0]}
-          </p>
+            <AlertDescription>
+              <p>{message}</p>
+            </AlertDescription>
+          </Alert>
         ) : null}
 
-        <Link
-          href="/auth/forgot-password"
-          className="text-xs font-medium text-foreground hover:underline"
-        >
-          Forgot your password ?
-        </Link>
-      </div>
+        <div className="space-y-1">
+          <Label htmlFor="email">E-mail</Label>
+          <Input name="email" type="email" id="email" />
 
-      <Button type="submit" className="w-full" disabled={isPending}>
-        {isPending ? (
-          <Loader2 className="size-4 animate-spin" />
-        ) : (
-          'Sign in with e-mail'
-        )}
-      </Button>
+          {errors?.email ? (
+            <p className="text-xs font-medium text-red-500 dark:text-red-400">
+              {errors.email[0]}
+            </p>
+          ) : null}
+        </div>
+        <div className="space-y-1">
+          <Label htmlFor="password">Password</Label>
+          <Input name="password" type="password" id="password" />
 
-      <Button asChild variant="link" size="sm" className="w-full">
-        <Link href="/auth/sign-up">Create new account</Link>
-      </Button>
+          {errors?.password ? (
+            <p className="text-xs font-medium text-red-500 dark:text-red-400">
+              {errors.password[0]}
+            </p>
+          ) : null}
+
+          <Link
+            href="/auth/forgot-password"
+            className="text-xs font-medium text-foreground hover:underline"
+          >
+            Forgot your password ?
+          </Link>
+        </div>
+
+        <Button type="submit" className="w-full" disabled={isPending}>
+          {isPending ? (
+            <Loader2 className="size-4 animate-spin" />
+          ) : (
+            'Sign in with e-mail'
+          )}
+        </Button>
+
+        <Button asChild variant="link" size="sm" className="w-full">
+          <Link href="/auth/sign-up">Create new account</Link>
+        </Button>
+      </form>
 
       <Separator />
 
-      <Button type="submit" variant="outline" className="w-full">
-        <Image
-          src={githubIcon}
-          alt="GitHub"
-          className="mr-2 size-4 dark:invert"
-        />
-        Sign in with GitHub
-      </Button>
-    </form>
+      <form action={signInWithGithub}>
+        <Button
+          type="submit"
+          formAction={signInWithGithub}
+          variant="outline"
+          className="w-full"
+        >
+          <Image
+            src={githubIcon}
+            alt="GitHub"
+            className="mr-2 size-4 dark:invert"
+          />
+          Sign in with GitHub
+        </Button>
+      </form>
+    </div>
   )
 }
