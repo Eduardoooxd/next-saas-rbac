@@ -1,6 +1,8 @@
+import { defineAbilityFor, userSchema } from '@saas/auth'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 
+import { getMembership } from '@/http/get-membership'
 import { getProfile } from '@/http/get-profile'
 
 export function isAuthenticated() {
@@ -21,4 +23,37 @@ export async function auth() {
   } catch (error) {}
 
   redirect('/api/auth/sign-out')
+}
+
+export function getCurrentOrg() {
+  return cookies().get('organization')?.value ?? null
+}
+
+export async function getCurrentMembership() {
+  const currentOrg = getCurrentOrg()
+
+  if (!currentOrg) {
+    return null
+  }
+
+  const { membership } = await getMembership(currentOrg)
+
+  return membership
+}
+
+export async function ability() {
+  const membership = await getCurrentMembership()
+
+  if (!membership) {
+    return null
+  }
+
+  const ability = defineAbilityFor(
+    userSchema.parse({
+      id: membership.userId,
+      role: membership.role,
+    }),
+  )
+
+  return ability
 }
