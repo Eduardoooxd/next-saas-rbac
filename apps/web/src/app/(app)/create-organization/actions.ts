@@ -81,7 +81,7 @@ export async function saveOrganizationAction(
 
   return {
     success: true,
-    message: null,
+    message: 'Successfully saved the organization.',
     errors: null,
   }
 }

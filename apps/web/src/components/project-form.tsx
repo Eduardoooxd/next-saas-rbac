@@ -2,17 +2,17 @@
 import { AlertTriangle, Loader2 } from 'lucide-react'
 import { useActionState } from 'react'
 
-import { saveOrganizationAction } from '@/app/(app)/create-organization/actions'
+import { saveProjectAction } from '@/app/(app)/organization/[slug]/create-project/actions'
 import { Button } from '@/components/ui/button'
-import { Checkbox } from '@/components/ui/checkbox'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 
 import { Alert, AlertDescription, AlertTitle } from './ui/alert'
+import { Textarea } from './ui/textarea'
 
-export default function OrganizationForm() {
+export default function ProjectForm() {
   const [{ success, errors, message }, formAction, isPending] = useActionState(
-    saveOrganizationAction,
+    saveProjectAction,
     {
       success: false,
       message: '',
@@ -25,7 +25,7 @@ export default function OrganizationForm() {
       {!success && message ? (
         <Alert variant="destructive">
           <AlertTriangle className="size-4" />
-          <AlertTitle>Save Organization failed!</AlertTitle>
+          <AlertTitle>save Project failed!</AlertTitle>
 
           <AlertDescription>
             <p>{message}</p>
@@ -45,7 +45,7 @@ export default function OrganizationForm() {
       ) : null}
 
       <div className="space-y-1">
-        <Label htmlFor="name">Organization Name</Label>
+        <Label htmlFor="name">Project Name</Label>
         <Input name="name" id="name" />
 
         {errors?.name ? (
@@ -56,46 +56,21 @@ export default function OrganizationForm() {
       </div>
 
       <div className="space-y-1">
-        <Label htmlFor="domain">E-mail Domain</Label>
-        <Input
-          name="domain"
-          type="text"
-          id="domain"
-          inputMode="url"
-          placeholder="example.com"
-        />
+        <Label htmlFor="description">Description</Label>
+        <Textarea name="description" id="description" />
 
-        {errors?.domain ? (
+        {errors?.description ? (
           <p className="text-xs font-medium text-red-500 dark:text-red-400">
-            {errors.domain[0]}
+            {errors.description[0]}
           </p>
         ) : null}
-      </div>
-
-      <div className="space-y-1">
-        <div className="flex items-baseline space-x-2">
-          <Checkbox
-            name="shoudAttachUsersByDomain"
-            id="shouldAttachUsersByDomain"
-            className="translate-y-0.5"
-          />
-          <label htmlFor="shouldAttachUsersByDomain" className="space-y-1">
-            <span className="text-sm font-medium leading-none">
-              Auto-join new members
-            </span>
-            <p className="text-sm text-muted-foreground">
-              This will automaticlly invite all members with same e-mail domain
-              to this organization.
-            </p>
-          </label>
-        </div>
       </div>
 
       <Button type="submit" className="w-full" disabled={isPending}>
         {isPending ? (
           <Loader2 className="size-4 animate-spin" />
         ) : (
-          'Save Organization'
+          'Save Project'
         )}
       </Button>
     </form>
