@@ -16,7 +16,7 @@ export default async function Header() {
   const canUserListProjects = permissions?.can('get', 'Project')
 
   return (
-    <div className="mx-auto flex max-w-[1200px] items-center justify-between border-b pb-2">
+    <div className="mx-auto flex max-w-[1200px] items-center justify-between">
       <div className="flex items-center gap-3">
         <Image
           src={companyIcon}
