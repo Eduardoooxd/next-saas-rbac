@@ -6,6 +6,7 @@ import { ability } from '@/auth/auth'
 
 import OrganizationSwitcher from './organization-switcher'
 import ProfileButton from './profile-button'
+import ProjectSwitcher from './project-switcher'
 import ThemeSwitcher from './theme/theme-switcher'
 import { Separator } from './ui/separator'
 
@@ -27,7 +28,13 @@ export default async function Header() {
 
         <OrganizationSwitcher />
 
-        {canUserListProjects ? <p>Projects </p> : null}
+        {canUserListProjects ? (
+          <>
+            <Slash className="size-3 -rotate-[14deg] text-border" />
+
+            <ProjectSwitcher />
+          </>
+        ) : null}
       </div>
 
       <div className="flex items-center gap-4">
