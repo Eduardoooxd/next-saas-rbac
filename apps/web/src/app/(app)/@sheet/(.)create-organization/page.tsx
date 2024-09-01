@@ -1,15 +1,11 @@
+import { InterceptedSheetContent } from '@/components/intercepted-sheet-content'
 import OrganizationForm from '@/components/organization-form'
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-} from '@/components/ui/sheet'
+import { Sheet, SheetHeader, SheetTitle } from '@/components/ui/sheet'
 
 export default function CreateOrganizationInterceptingRoute() {
   return (
     <Sheet defaultOpen>
-      <SheetContent>
+      <InterceptedSheetContent>
         <SheetHeader>
           <SheetTitle>Create Organization</SheetTitle>
         </SheetHeader>
@@ -17,7 +13,7 @@ export default function CreateOrganizationInterceptingRoute() {
         <div className="py-4">
           <OrganizationForm />
         </div>
-      </SheetContent>
+      </InterceptedSheetContent>
     </Sheet>
   )
 }
