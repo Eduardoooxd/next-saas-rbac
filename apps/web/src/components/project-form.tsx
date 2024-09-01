@@ -1,16 +1,20 @@
 'use client'
 import { AlertTriangle, Loader2 } from 'lucide-react'
+import { useParams } from 'next/navigation'
 import { useActionState } from 'react'
 
 import { saveProjectAction } from '@/app/(app)/organization/[slug]/create-project/actions'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { queryClient } from '@/lib/react-query'
 
 import { Alert, AlertDescription, AlertTitle } from './ui/alert'
 import { Textarea } from './ui/textarea'
 
 export default function ProjectForm() {
+  const { slug: orgSlug } = useParams<{ slug: string }>()
+
   const [{ success, errors, message }, formAction, isPending] = useActionState(
     saveProjectAction,
     {
@@ -19,6 +23,12 @@ export default function ProjectForm() {
       errors: null,
     },
   )
+
+  if (success && message) {
+    queryClient.invalidateQueries({
+      queryKey: [orgSlug, 'projects'],
+    })
+  }
 
   return (
     <form className="space-y-4" action={formAction}>
