@@ -2,7 +2,11 @@
 import { AlertTriangle, Loader2 } from 'lucide-react'
 import { useActionState } from 'react'
 
-import { saveOrganizationAction } from '@/app/(app)/create-organization/actions'
+import {
+  OrganizationSchema,
+  saveOrganizationAction,
+  updateOrganizationAction,
+} from '@/app/(app)/create-organization/actions'
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Input } from '@/components/ui/input'
@@ -10,9 +14,21 @@ import { Label } from '@/components/ui/label'
 
 import { Alert, AlertDescription, AlertTitle } from './ui/alert'
 
-export default function OrganizationForm() {
+interface OrganizationFormProps {
+  isUpdating?: boolean
+  initialData?: OrganizationSchema
+}
+
+export default function OrganizationForm({
+  isUpdating = false,
+  initialData,
+}: OrganizationFormProps) {
+  const formActionToInvoke = isUpdating
+    ? updateOrganizationAction
+    : saveOrganizationAction
+
   const [{ success, errors, message }, formAction, isPending] = useActionState(
-    saveOrganizationAction,
+    formActionToInvoke,
     {
       success: false,
       message: '',
@@ -46,7 +62,7 @@ export default function OrganizationForm() {
 
       <div className="space-y-1">
         <Label htmlFor="name">Organization Name</Label>
-        <Input name="name" id="name" />
+        <Input name="name" id="name" defaultValue={initialData?.name} />
 
         {errors?.name ? (
           <p className="text-xs font-medium text-red-500 dark:text-red-400">
@@ -63,6 +79,7 @@ export default function OrganizationForm() {
           id="domain"
           inputMode="url"
           placeholder="example.com"
+          defaultValue={initialData?.domain ?? undefined}
         />
 
         {errors?.domain ? (
@@ -78,6 +95,7 @@ export default function OrganizationForm() {
             name="shoudAttachUsersByDomain"
             id="shouldAttachUsersByDomain"
             className="translate-y-0.5"
+            defaultChecked={initialData?.shouldAttachUsersByDomain}
           />
           <label htmlFor="shouldAttachUsersByDomain" className="space-y-1">
             <span className="text-sm font-medium leading-none">
