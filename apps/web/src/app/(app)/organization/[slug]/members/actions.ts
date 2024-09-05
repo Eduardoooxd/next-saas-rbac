@@ -5,6 +5,7 @@ import { revalidateTag } from 'next/cache'
 
 import { getCurrentOrg } from '@/auth/auth'
 import { removerMember } from '@/http/remove-member'
+import { revokeInvite } from '@/http/revoke-invite'
 import { updateMember } from '@/http/update-member'
 
 export async function removerMemberAction(memberId: string) {
@@ -28,4 +29,15 @@ export async function updaterMemberAction(memberId: string, role: Role) {
   })
 
   revalidateTag(`${currentOrg}/members`)
+}
+
+export async function revokeInviteAction(inviteId: string) {
+  const currentOrg = getCurrentOrg()
+
+  await revokeInvite({
+    org: currentOrg!,
+    inviteId,
+  })
+
+  revalidateTag(`${currentOrg}/invites`)
 }
