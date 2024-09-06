@@ -6,8 +6,6 @@ import { z } from 'zod'
 import { getCurrentOrg } from '@/auth/auth'
 import { createProject } from '@/http/create-project'
 
-// import { createProject } from '@/http/create-Project'
-
 const projectSchema = z.object({
   name: z.string().min(4, { message: 'Please include at least 4 characters.' }),
   description: z.string(),
