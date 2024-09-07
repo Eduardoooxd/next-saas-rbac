@@ -3,6 +3,7 @@
 import { AlertTriangle, Loader2 } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useSearchParams } from 'next/navigation'
 import { useActionState } from 'react'
 
 import githubIcon from '@/assets/icons/github-icon.svg'
@@ -16,6 +17,8 @@ import { signInWithGithub } from '../action'
 import { signInWithEmailAndPassword } from './actions'
 
 export default function SignInForm() {
+  const searchParams = useSearchParams()
+
   const [{ success, errors, message }, formAction, isPending] = useActionState(
     signInWithEmailAndPassword,
     { success: false, message: null, errors: null },
@@ -37,7 +40,12 @@ export default function SignInForm() {
 
         <div className="space-y-1">
           <Label htmlFor="email">E-mail</Label>
-          <Input name="email" type="email" id="email" />
+          <Input
+            name="email"
+            type="email"
+            id="email"
+            defaultValue={searchParams.get('email') ?? ''}
+          />
 
           {errors?.email ? (
             <p className="text-xs font-medium text-red-500 dark:text-red-400">
