@@ -116,6 +116,6 @@ app.register(getOrganizationBilling)
 
 const port = env.PORT
 
-app.listen({ port }).then(() => {
+app.listen({ port, host: '0.0.0.0' }).then(() => {
   console.log(`HTTP Server running at port: ${port}`)
 })
